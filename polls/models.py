@@ -69,3 +69,6 @@ class SurveyResult(models.Model):
     q34 = models.IntegerField(default = -1)
     q35 = models.IntegerField(default = -1)
     q36 = models.IntegerField(default = -1)
+
+    def __str__(self):
+        return "User: " + str(self.submit_user_id) + " / Submitted At: " + str(self.submit_time)
