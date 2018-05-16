@@ -9,7 +9,7 @@ from django.views import generic
 from django.utils import timezone
 
 
-from .models import Choice, Question, User, SurveyResult
+from .models import Choice, Question, User, SurveyResult, Checkin
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -53,6 +53,15 @@ def vote(request, question_id):
 
 def ping(request, user_id):
     return HttpResponse("Pinged with %s." % user_id)
+
+def checkin(request, user_id):    
+    check_in_data = Checkin(userid = user_id, time = timezone.now())
+    check_in_data.save()
+    return HttpResponse("User %s checked in." % str(user_id))
+
+def get_survey(request, user_id):
+    results = SurveyResult.objects.all()
+    return HttpResponse(str(results))
 
 def submit_survey(request, user_id, survey_string):
     if(len(survey_string) != 36 or not survey_string.isdigit()):

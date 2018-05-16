@@ -10,5 +10,7 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
     path('<int:pk>/', views.UserView.as_view(), name='user'),
     path('ping/<int:user_id>/', views.ping, name='ping'),
-    path('submit_survey/<int:user_id>/<str:survey_string>', views.submit_survey, name='submit_survey')
+    path('checkin/<int:user_id>/', views.checkin, name='checkin'),
+    path('submit_survey/<int:user_id>/<str:survey_string>', views.submit_survey, name='submit_survey'),
+    path('get_survey/<int:user_id>/', views.get_survey, name='get_survey')
 ]

@@ -30,6 +30,13 @@ class User(models.Model):
     def __str__(self):
         return str(self.userid) + " / " + str(self.lastlogin)
 
+class Checkin(models.Model):
+    userid = models.IntegerField(unique=False)
+    time = models.DateTimeField('checkintime')
+
+    def __str__(self):
+        return str(self.userid) + " / " + str(self.time)
+
 class SurveyResult(models.Model):
     submit_user_id = models.IntegerField()
     submit_time = models.DateTimeField()
