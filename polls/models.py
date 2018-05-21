@@ -32,10 +32,11 @@ class User(models.Model):
 
 class Checkin(models.Model):
     userid = models.IntegerField(unique=False)
+    ping_type = models.IntegerField(default=0)
     time = models.DateTimeField('checkintime')
 
     def __str__(self):
-        return str(self.userid) + " / " + str(self.time)
+        return "User : " + str(self.userid) + " / Check-in Type: " + str(self.ping_type) + " / Time: " + str(self.time)
 
 class SurveyResult(models.Model):
     submit_user_id = models.IntegerField()

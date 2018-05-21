@@ -54,8 +54,8 @@ def vote(request, question_id):
 def ping(request, user_id):
     return HttpResponse("Pinged with %s." % user_id)
 
-def checkin(request, user_id):    
-    check_in_data = Checkin(userid = user_id, time = timezone.now())
+def checkin(request, user_id, ping_type):    
+    check_in_data = Checkin(userid = user_id, ping_type = ping_type, time = timezone.now())
     check_in_data.save()
     return HttpResponse("User %s checked in." % str(user_id))
 
