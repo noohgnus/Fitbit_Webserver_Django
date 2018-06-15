@@ -11,6 +11,8 @@ urlpatterns = [
     path('<int:pk>/', views.UserView.as_view(), name='user'),
     path('ping/<int:user_id>/', views.ping, name='ping'),
     path('checkin/<int:user_id>/<int:ping_type>/', views.checkin, name='checkin'),
-    path('submit_survey/<int:user_id>/<str:survey_string>', views.submit_survey, name='submit_survey'),
-    path('get_survey/<int:user_id>/', views.get_survey, name='get_survey')
+    path('submit_survey_compact/<int:user_id>/<str:survey_string>', views.submit_survey_compact, name='submit_survey_compact'),
+    path('get_surveys_yesterday/', views.get_surveys_yesterday, name='get_surveys_yesterday'),
+    path('get_checkins_yesterday/', views.get_checkins_yesterday, name='get_checkins_yesterday'),
+    path('clear_data_before_yesterday', views.clear_data_before_yesterday, name='clear_data_before_yesterday')
 ]
