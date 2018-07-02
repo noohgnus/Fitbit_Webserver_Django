@@ -14,5 +14,8 @@ urlpatterns = [
     path('submit_survey_compact/<int:user_id>/<str:survey_string>', views.submit_survey_compact, name='submit_survey_compact'),
     path('get_surveys_yesterday/', views.get_surveys_yesterday, name='get_surveys_yesterday'),
     path('get_checkins_yesterday/', views.get_checkins_yesterday, name='get_checkins_yesterday'),
-    path('clear_data_before_yesterday', views.clear_data_before_yesterday, name='clear_data_before_yesterday')
+    path('clear_data_before_yesterday', views.clear_data_before_yesterday, name='clear_data_before_yesterday'),
+    path('submit_feedback/<int:user_id>/<int:week>/<str:avg_weight>/<str:avg_steps>/<int:total_active_min>/<str:height>/', views.submit_feedback, name='submit_feedback'),
+    path('get_feedback/<int:user_id>/', views.get_feedback, name='get_feedback'),
+    path('remove_feedback/<int:user_id>/', views.remove_feedback, name='remove_feedback')
 ]
