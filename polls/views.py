@@ -107,12 +107,13 @@ def clear_data_before_yesterday(request):
 
 
 def submit_survey_compact(request, user_id, survey_string):
-    if(len(survey_string) != 36 or not survey_string.isdigit()):
+    if(len(survey_string) < 36 or not survey_string.isdigit()):
         return HttpResponse("Invalid survey submission %s." % survey_string)
     survey_result = SurveyCompactResult(
         submit_user_id = user_id,
         submit_time = datetime.datetime.now(tz),
-        answer_sequence = survey_string)
+        answer_sequence =
+            "Intervention: " + survey_string if len(survey_string) == 36 else "Control: " + survey_string[:-36] + "lbs, " + survey_string[-36:])
     survey_result.save()
     return HttpResponse("Submitted with %s." % survey_result)
 
@@ -143,4 +144,3 @@ def get_feedback(request, user_id):
 def remove_feedback(request, user_id):
     filter_results = FeedbackData.objects.filter(user_id=user_id).delete()
     return JsonResponse({"status":"complete"})
-
