@@ -47,6 +47,15 @@ class SurveyCompactResult(models.Model):
     def __str__(self):
         return str(self.submit_user_id) + " / " + str(self.submit_time) + " / " + str(self.answer_sequence)
 
+class ReminderSubscription(models.Model):
+    user_id = models.IntegerField()
+    preferred_time = models.CharField(max_length=64)
+    token = models.CharField(max_length=128)
+
+    def __str__(self):
+        return "user_id: %s / preferred_time: %s / token: %s" % (str(self.user_id), str(self.preferred_time), str(self.token))
+        
+
 
 class FeedbackData(models.Model):
     user_id = models.IntegerField()

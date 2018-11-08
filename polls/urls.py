@@ -17,5 +17,7 @@ urlpatterns = [
     path('clear_data_before_yesterday', views.clear_data_before_yesterday, name='clear_data_before_yesterday'),
     path('submit_feedback/<int:user_id>/<int:week>/<str:avg_weight>/<str:avg_steps>/<int:total_active_min>/<str:height>/', views.submit_feedback, name='submit_feedback'),
     path('get_feedback/<int:user_id>/', views.get_feedback, name='get_feedback'),
-    path('remove_feedback/<int:user_id>/', views.remove_feedback, name='remove_feedback')
+    path('remove_feedback/<int:user_id>/', views.remove_feedback, name='remove_feedback'),
+    path('reminders/<int:user_id>/<str:preferred_time>/<str:token>/', views.register_reminder, name="register_reminder"),
+
 ]

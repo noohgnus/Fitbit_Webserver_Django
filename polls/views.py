@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.core import serializers
 
 
-from .models import Choice, Question, User, SurveyCompactResult, Checkin, FeedbackData
+from .models import Choice, Question, User, SurveyCompactResult, Checkin, FeedbackData, ReminderSubscription
 
 from django.utils.dateparse import parse_datetime
 import pytz
@@ -140,6 +140,20 @@ def get_feedback(request, user_id):
     result_values = filter_results.values()
 
     return JsonResponse({"FeedbackData" : list(result_values)})
+
+def register_reminder(request, user_id, preferred_time, token):
+    try:
+        sub = ReminderSubscription(
+            user_id=user_id,
+            preferred_time=preferred_time,
+            token=token
+        )
+        sub.save()
+        return JsonResponse({"status":"200 OK"})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"status":str(e)})
+
 
 def remove_feedback(request, user_id):
     filter_results = FeedbackData.objects.filter(user_id=user_id).delete()
